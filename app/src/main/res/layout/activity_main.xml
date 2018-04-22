@@ -8,9 +8,9 @@
     tools:context=".MainActivity">
 
     <GridView
+        android:id="@+id/dynamic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="120dp"
-        android:numColumns="auto_fit"
+        android:numColumns="2"
         android:stretchMode="columnWidth" />
 </LinearLayout>
