@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Create friend objects and add to list
         Friend arya = new Friend("Arya","A girl is Arya Stark of Winterfell, and I'm going home.", getResources().getIdentifier("arya","drawable", getPackageName()));
         friends.add(arya);
         Friend cersei = new Friend("Cersei","When you play the game of thrones, you win or you die. There is no middle ground.", getResources().getIdentifier("cersei","drawable", getPackageName()));
@@ -51,12 +52,10 @@ public class MainActivity extends AppCompatActivity {
         Friend tyrion = new Friend("Tyrion","empty", getResources().getIdentifier("tyrion","drawable", getPackageName()));
         friends.add(tyrion);
 
+        // Create adapter and set layout accordingly
         FriendsAdapter adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
-
-        GridView gridView = (GridView) findViewById(R.id.dynamic);
-        gridView.setAdapter(adapter);
-
-        gridView.setOnItemClickListener(new GridItemClickListener());
-
+        GridView gv = (GridView) findViewById(R.id.dynamic);
+        gv.setAdapter(adapter);
+        gv.setOnItemClickListener(new GridItemClickListener());
     }
 }

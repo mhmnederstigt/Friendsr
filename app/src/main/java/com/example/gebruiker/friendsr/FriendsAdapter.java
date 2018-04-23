@@ -30,10 +30,11 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.grid_item, parent, false);
         }
 
+
         TextView textView = (TextView) convertView.findViewById(R.id.name);
         textView.setText(friends.get(position).getName());
-        ImageView picture = (ImageView) convertView.findViewById(R.id.picture);
 
+        ImageView picture = (ImageView) convertView.findViewById(R.id.picture);
         picture.setImageDrawable(getContext().getResources().getDrawable(friends.get(position).getDrawableId()));
 
         return convertView;
