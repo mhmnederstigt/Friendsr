@@ -11,13 +11,18 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class InputActivity extends AppCompatActivity {
+    ArrayList<Friend> friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
 
+        Intent intent = getIntent();
+        friends = (ArrayList<Friend>) intent.getSerializableExtra("friends");
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new AddOnClickListener());
     }
@@ -33,6 +38,7 @@ public class InputActivity extends AppCompatActivity {
 
             Intent intent = new Intent(InputActivity.this, MainActivity.class);
             intent.putExtra("added_friend", addedFriend);
+            intent.putExtra("friends", friends);
             startActivity(intent);
         }
     }
