@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ProfileActivity extends AppCompatActivity {
     private Friend retrievedFriend;
 
@@ -30,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Retrieve friend from intent and set layout according to info
         Intent intent = getIntent();
         retrievedFriend = (Friend) intent.getSerializableExtra("clicked_friend");
+        ArrayList friends = (ArrayList<Friend>) intent.getSerializableExtra("friends");
 
         ImageView profpicture = (ImageView) findViewById(R.id.picture);
         profpicture.setImageDrawable(getResources().getDrawable(retrievedFriend.getDrawableId()));

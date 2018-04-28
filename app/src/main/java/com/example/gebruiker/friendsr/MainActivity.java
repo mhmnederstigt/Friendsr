@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("clicked_friend", clickedFriend);
+            intent.putExtra("friends", friends);
             startActivity(intent);
         }
     }
@@ -31,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, InputActivity.class);
+            intent.putExtra("friends", friends);
             startActivity(intent);
         }
-    }
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         friends.add(sansa);
         Friend tyrion = new Friend("Tyrion","empty", getResources().getIdentifier("tyrion","drawable", getPackageName()));
         friends.add(tyrion);
+
+        Intent intent = getIntent();
+        ArrayList<Friend> friends2 = (ArrayList<Friend>) intent.getSerializableExtra("friends");
+        if (friends2 != null) {
+            friends = friends2;
+        }
 
         // Create adapter and set layout accordingly
         adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
