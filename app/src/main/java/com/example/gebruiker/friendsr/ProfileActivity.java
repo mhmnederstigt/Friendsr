@@ -32,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         // Retrieve friend from intent and set layout according to info
         Intent intent = getIntent();
         retrievedFriend = (Friend) intent.getSerializableExtra("clicked_friend");
-        ArrayList friends = (ArrayList<Friend>) intent.getSerializableExtra("friends");
 
         ImageView profpicture = (ImageView) findViewById(R.id.picture);
         profpicture.setImageDrawable(getResources().getDrawable(retrievedFriend.getDrawableId()));

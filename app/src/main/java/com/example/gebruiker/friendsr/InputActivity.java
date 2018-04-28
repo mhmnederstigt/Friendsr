@@ -33,8 +33,7 @@ public class InputActivity extends AppCompatActivity {
             TextView nameInput = (TextView) findViewById(R.id.name);
             TextView bioInput = (TextView) findViewById(R.id.bio);
             RatingBar ratingInput = (RatingBar) findViewById(R.id.rating);
-            Friend addedFriend = new Friend(nameInput.getText().toString(),bioInput.getText().toString(), getResources().getIdentifier("arya","drawable", getPackageName()));
-            addedFriend.setRating(ratingInput.getRating());
+            Friend addedFriend = new Friend(nameInput.getText().toString(),bioInput.getText().toString(), getResources().getIdentifier("anonymous","drawable", getPackageName()), ratingInput.getRating());
 
             Intent intent = new Intent(InputActivity.this, MainActivity.class);
             intent.putExtra("added_friend", addedFriend);

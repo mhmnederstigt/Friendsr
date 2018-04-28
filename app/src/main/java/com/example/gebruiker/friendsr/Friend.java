@@ -13,6 +13,13 @@ public class Friend implements Serializable {
         this.drawableId = drawableId;
     }
 
+    public Friend(String name, String bio, int drawableId, float rating) {
+        this.name = name;
+        this.bio = bio;
+        this.drawableId = drawableId;
+        this.rating = rating;
+    }
+
     public String getName() {
         return name;
     }

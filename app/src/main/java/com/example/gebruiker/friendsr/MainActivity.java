@@ -52,15 +52,15 @@ public class MainActivity extends AppCompatActivity {
         friends.add(jaime);
         Friend jon = new Friend("Jon","He's never been a bastard. He's the heir to the Iron Throne.", getResources().getIdentifier("jon","drawable", getPackageName()));
         friends.add(jon);
-        Friend jorah = new Friend("Jorah","empty", getResources().getIdentifier("jorah","drawable", getPackageName()));
+        Friend jorah = new Friend("Jorah","", getResources().getIdentifier("jorah","drawable", getPackageName()));
         friends.add(jorah);
-        Friend margaery = new Friend("Margeary","empty", getResources().getIdentifier("margaery","drawable", getPackageName()));
+        Friend margaery = new Friend("Margeary","", getResources().getIdentifier("margaery","drawable", getPackageName()));
         friends.add(margaery);
-        Friend melisandre = new Friend("Melisandre","empty", getResources().getIdentifier("melisandre","drawable", getPackageName()));
+        Friend melisandre = new Friend("Melisandre","", getResources().getIdentifier("melisandre","drawable", getPackageName()));
         friends.add(melisandre);
-        Friend sansa = new Friend("Sansa","empty", getResources().getIdentifier("sansa","drawable", getPackageName()));
+        Friend sansa = new Friend("Sansa","", getResources().getIdentifier("sansa","drawable", getPackageName()));
         friends.add(sansa);
-        Friend tyrion = new Friend("Tyrion","empty", getResources().getIdentifier("tyrion","drawable", getPackageName()));
+        Friend tyrion = new Friend("Tyrion","", getResources().getIdentifier("tyrion","drawable", getPackageName()));
         friends.add(tyrion);
 
         Intent intent = getIntent();
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         Friend addedFriend = (Friend) intent.getSerializableExtra("added_friend");
         if (addedFriend != null) {
             friends.add(addedFriend);
-//            getIntent().removeExtra("added_friend");
+            getIntent().removeExtra("added_friend");
         }
 
         // Update adapter and set layout accordingly
