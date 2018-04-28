@@ -5,4 +5,4 @@ Week 3 -- Friendsr
 
 Screenshot:
 
-![Screenshot TicTacToe](doc/ScreenshotFriendsr.jpg)
+![Screenshot Friendsr](doc/ScreenshotFriendsr.jpg)
