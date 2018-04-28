@@ -55,6 +55,5 @@ public class ProfileActivity extends AppCompatActivity {
         else {
             rb.setRating(retrievedFriend.getRating());
         }
-
     }
 }

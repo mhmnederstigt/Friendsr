@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ArrayList<Friend> friends = new ArrayList<Friend>();
+    FriendsAdapter adapter;
+    GridView gv;
 
     private class GridItemClickListener implements AdapterView.OnItemClickListener {
         @Override
@@ -23,9 +27,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    ArrayList<Friend> friends = new ArrayList<Friend>();
+    private class AddOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, InputActivity.class);
+            startActivity(intent);
+        }
+    }
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,9 +62,28 @@ public class MainActivity extends AppCompatActivity {
         friends.add(tyrion);
 
         // Create adapter and set layout accordingly
-        FriendsAdapter adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
-        GridView gv = (GridView) findViewById(R.id.dynamic);
+        adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
+        gv = (GridView) findViewById(R.id.dynamic);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(new GridItemClickListener());
+
+        Button add = (Button) findViewById(R.id.add);
+        add.setOnClickListener(new AddOnClickListener());
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        // Check if a friend is added in intent
+        Intent intent = getIntent();
+        Friend addedFriend = (Friend) intent.getSerializableExtra("added_friend");
+        if (addedFriend != null) {
+            friends.add(addedFriend);
+        }
+
+        // Update adapter and set layout accordingly
+        adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
+        gv.setAdapter(adapter);
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@android:color/background_light"
+    android:background="@color/background"
     android:orientation="horizontal"
     android:padding="12dp"
     tools:context=".ProfileActivity">
@@ -39,7 +39,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/thin"
+            android:fontFamily="@font/droidserif"
             android:text="TextView"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,9 @@
             android:layout_marginBottom="18dp"
             android:layout_marginTop="18dp"
             tools:layout_editor_absoluteX="72dp"
-            tools:layout_editor_absoluteY="411dp" />
+            tools:layout_editor_absoluteY="411dp"
+            android:progressTint="@color/colorAccent"
+            />
 
         <TextView
             android:id="@+id/bio"
@@ -65,7 +67,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/thin"
+            android:fontFamily="@font/droidserif"
             android:text="bio"
             android:textAlignment="center"
             android:textSize="14sp"
