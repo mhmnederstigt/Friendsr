@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button add = (Button) findViewById(R.id.add);
         add.setOnClickListener(new AddOnClickListener());
+
     }
 
     @Override
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         Friend addedFriend = (Friend) intent.getSerializableExtra("added_friend");
         if (addedFriend != null) {
             friends.add(addedFriend);
+            getIntent().removeExtra("added_friend");
         }
 
         // Update adapter and set layout accordingly
