@@ -2,6 +2,7 @@ package com.example.gebruiker.friendsr;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 public class InputActivity extends AppCompatActivity {
     ArrayList<Friend> friends;
+    Boolean exists = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +39,38 @@ public class InputActivity extends AppCompatActivity {
             TextView bioInput = (TextView) findViewById(R.id.bio);
             RatingBar ratingInput = (RatingBar) findViewById(R.id.rating);
 
-            // Store user input in new friend object
-            Friend addedFriend = new Friend(nameInput.getText().toString(),bioInput.getText().toString(), getResources().getIdentifier("anonymous","drawable", getPackageName()));
+            // Iterate over friends' names and check if already exists
+            for (int i=0; i<friends.size(); i++) {
+                String friendI = friends.get(i).getName();
+                String friendInput = String.valueOf(nameInput.getText());
 
-            // Store rating separately in SharedPreferences
-            SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putFloat(addedFriend.getName(), ratingInput.getRating());
-            editor.apply();
+                if (friendI.equalsIgnoreCase(friendInput)) {
+                    exists = true;
+                }
+            }
 
-            // Pass friend object to MainActivity
-            Intent intent = new Intent(InputActivity.this, MainActivity.class);
-            intent.putExtra("added_friend", addedFriend);
-            intent.putExtra("friends", friends);
-            startActivity(intent);
+            if (!exists) {
+                // Store user input in new friend object
+                Friend addedFriend = new Friend(nameInput.getText().toString(), bioInput.getText().toString(), getResources().getIdentifier("anonymous", "drawable", getPackageName()));
+
+                // Store rating separately in SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putFloat(addedFriend.getName(), ratingInput.getRating());
+                editor.apply();
+
+                // Pass friend object to MainActivity
+                Intent intent = new Intent(InputActivity.this, MainActivity.class);
+                intent.putExtra("added_friend", addedFriend);
+                intent.putExtra("friends", friends);
+                startActivity(intent);
+            }
+
+            else if (exists) {
+                nameInput.setText("Name already exists");
+                nameInput.setTextColor(Color.RED);
+                exists = false;
+            }
         }
     }
 }
