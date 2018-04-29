@@ -14,16 +14,6 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
     private Friend retrievedFriend;
 
-    private class RatingBarChangeListener implements RatingBar.OnRatingBarChangeListener {
-        @Override
-        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-            SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putFloat(retrievedFriend.getName(), ratingBar.getRating());
-            editor.apply();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +41,25 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
         Float storedRating = prefs.getFloat(retrievedFriend.getName(), 0);
 
-        if (storedRating != null) {
+        // If friend is created by default in code, and never change by user:
+        if (storedRating == null) {
+            rb.setRating(retrievedFriend.getRating());
+
+        }
+        // If use has changed or created friend
+        else {
             rb.setRating(storedRating);
         }
-        else {
-            rb.setRating(retrievedFriend.getRating());
+    }
+
+    // If ratingbar is changed, this is saved in shared preferences
+    private class RatingBarChangeListener implements RatingBar.OnRatingBarChangeListener {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putFloat(retrievedFriend.getName(), ratingBar.getRating());
+            editor.apply();
         }
     }
 }
