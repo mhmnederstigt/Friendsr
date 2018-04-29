@@ -5,4 +5,4 @@ Week 3 -- Friendsr
 
 Screenshot:
 
-![Screenshot Friendsr](doc/ScreenshotFriendsr.jpg)
+![Screenshot Friendsr](doc/Screenshot_friendsr.png)
